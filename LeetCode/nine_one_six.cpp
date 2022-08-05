@@ -19,7 +19,7 @@ vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
         set2.insert(tempMap2);
     }
 
-//    for(auto [tempChar,tempVal] : set2) cout << tempChar << " "<< tempVal << "\n";
+
     vector<string> final;
 
 

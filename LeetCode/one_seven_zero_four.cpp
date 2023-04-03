@@ -74,34 +74,23 @@ using namespace std;
 #define pb(a) push_back(a)
 #endif //COMP_LEETCODEBITS_H
 
-
-int combinationSum4(vector<int>& nums, int target) {
-    vector<int> dp(target+1,0);
-    fr(i,nums.size()) dp[nums[i]]++;
-    for(int i = 1;i<=target;i++){
-        fr(j,nums.size()){
-            if(i-nums[j]>=0) dp[i]+=dp[i-nums[j]];
-            dp[i] = dp[i]%(1000000000+7);
-        }
-
+int vowels(string s){
+    int count = 0;
+    for(int i = 0;i<s.length();i++){
+        char x = tolower(s[i]);
+        if(x=='a'||x=='e'||x=='i'||x=='o'||x=='u') count++;
     }
-
-    return dp[target];
-
+     return count;
 
 }
 
+bool halvesAreAlike(string s) {
+    string a = s.substr(0,s.length()/2);
+    string b = s.substr(s.length()/2);
+    return vowels(a)==vowels(b);
+}
 
 int main(){
     fast;
 
-    int size, target; cin >> size>>target;
-    vector<int> arr(size,0);
-    fr(i,size) cin >> arr[i];
-    cout << combinationSum4(arr,target)<<"\n";
-
-
-    return 0;
-
 }
-

@@ -74,34 +74,31 @@ using namespace std;
 #define pb(a) push_back(a)
 #endif //COMP_LEETCODEBITS_H
 
+struct ListNode {
+         int val;
+         ListNode *next;
+         ListNode() : val(0), next(nullptr) {}
+         ListNode(int x) : val(x), next(nullptr) {}
+         ListNode(int x, ListNode *next) : val(x), next(next) {}
+     };
 
-int combinationSum4(vector<int>& nums, int target) {
-    vector<int> dp(target+1,0);
-    fr(i,nums.size()) dp[nums[i]]++;
-    for(int i = 1;i<=target;i++){
-        fr(j,nums.size()){
-            if(i-nums[j]>=0) dp[i]+=dp[i-nums[j]];
-            dp[i] = dp[i]%(1000000000+7);
-        }
-
+ListNode* middleNode(ListNode* head) {
+    int count = 1;
+    ListNode* head2 = head;
+    while(head->next!=NULL){
+        count++;
+        head = head->next;
     }
-
-    return dp[target];
-
+    int count2 = 1;
+    for(int i = 0;i<count2;i++){
+        head2 = head2->next;
+    }
+    return head2;
 
 }
 
-
 int main(){
-    fast;
-
-    int size, target; cin >> size>>target;
-    vector<int> arr(size,0);
-    fr(i,size) cin >> arr[i];
-    cout << combinationSum4(arr,target)<<"\n";
 
 
     return 0;
-
 }
-

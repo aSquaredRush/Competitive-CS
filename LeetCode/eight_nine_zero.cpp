@@ -25,7 +25,7 @@ vector <string> findAndReplacePattern(vector <string> &words, string pattern) {
 int main() {
     fast;
     vector<string> words;
-    words.push_back("abc");
+    words.push_back("2023");
     words.push_back("deq");
     words.push_back("mee");
     words.push_back("aqq");

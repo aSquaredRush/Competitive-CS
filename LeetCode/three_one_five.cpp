@@ -9,6 +9,7 @@ int bsearch(vector<int> arr, int i,int j,int val){
         if(arr[mid]>=val){
             if(mid-1>=0 && arr[mid-1]<val) return mid-1;
             hi = mid-1;
+//            if(val==1) cout << lo << " "<< hi << "\n";
         }
         else if(arr[mid]<val){
             if(mid+1<arr.size() && arr[mid+1]>=val) return mid;
@@ -30,6 +31,11 @@ int main(){
         vector<int> sorted;
         FOR(j,i+1,arr.size()) sorted.push_back(arr[j]);
         sort(sorted.begin(),sorted.end());
+//        fr(j,sorted.size()) cout << sorted[j];
+//        cout<< "\n";
+//        cout << sorted.size() << " ";
+//        cout << arr[i] << " ";
+//        cout << bsearch(sorted,0,sorted.size()-1,arr[i])+1<<"\n";
         final.push_back(bsearch(sorted,0,sorted.size()-1,arr[i])+1);
     }
     final.push_back(0);

@@ -74,34 +74,29 @@ using namespace std;
 #define pb(a) push_back(a)
 #endif //COMP_LEETCODEBITS_H
 
-
-int combinationSum4(vector<int>& nums, int target) {
-    vector<int> dp(target+1,0);
-    fr(i,nums.size()) dp[nums[i]]++;
-    for(int i = 1;i<=target;i++){
-        fr(j,nums.size()){
-            if(i-nums[j]>=0) dp[i]+=dp[i-nums[j]];
-            dp[i] = dp[i]%(1000000000+7);
+bool uniqueOccurrences(vector<int>& arr) {
+    sort(arr.begin(),arr.end());
+    std::set<int> set;
+    if(arr.size()==1) return true;
+    int count = 0;
+    for(int i = 1;i<arr.size();i++){
+        count++;
+        if(arr[i]!=arr[i-1]){
+            if(set.find(count)!=set.end()) return false;
+            set.insert(count);
+            count = 0;
         }
-
     }
+    count++;
+    return (set.find(count)==set.end());
 
-    return dp[target];
 
 
 }
 
 
 int main(){
-    fast;
-
-    int size, target; cin >> size>>target;
-    vector<int> arr(size,0);
-    fr(i,size) cin >> arr[i];
-    cout << combinationSum4(arr,target)<<"\n";
 
 
-    return 0;
 
 }
-

@@ -73,35 +73,3 @@ using namespace std;
 #define all(a) a.begin(), a.end()
 #define pb(a) push_back(a)
 #endif //COMP_LEETCODEBITS_H
-
-
-int combinationSum4(vector<int>& nums, int target) {
-    vector<int> dp(target+1,0);
-    fr(i,nums.size()) dp[nums[i]]++;
-    for(int i = 1;i<=target;i++){
-        fr(j,nums.size()){
-            if(i-nums[j]>=0) dp[i]+=dp[i-nums[j]];
-            dp[i] = dp[i]%(1000000000+7);
-        }
-
-    }
-
-    return dp[target];
-
-
-}
-
-
-int main(){
-    fast;
-
-    int size, target; cin >> size>>target;
-    vector<int> arr(size,0);
-    fr(i,size) cin >> arr[i];
-    cout << combinationSum4(arr,target)<<"\n";
-
-
-    return 0;
-
-}
-

@@ -1,7 +1,7 @@
 
 
-#ifndef COMP_CSES_H
-#define COMP_CSES_H
+#ifndef COMP_LEETCODEBITS_H
+#define COMP_LEETCODEBITS_H
 
 #include <algorithm>
 #include <bitset>
@@ -74,29 +74,42 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define all(a) a.begin(), a.end()
 #define pb(a) push_back(a)
-#endif //COMP_CSES_H
+#endif //COMP_LEETCODEBITS_H
 
 
 int main() {
     fast;
-    int x, sum;
-    cin >> x >> sum;
-    vector<long long> nums(x, 0);
-    vector<long long> dp(sum + 1, 0);
-    fr(i, x) cin >> nums[i];
-    dp[0] = 1;
-    fr(j, nums.size()) {
-        fr(i, dp.size()) {
-            if (i - nums[j] >= 0) dp[i] += dp[i - nums[j]];
-            dp[i] = dp[i] % (1000000000+7);
-        }
+    string a, b;
+    cin >> a >> b;
 
+    vector<vector<long long>> v((b.size()+1),vector<long long> ((a.size()+1)));
+
+    for (int i = 0; i <= b.size(); i++) {
+        for (int j = 0; j <= a.size(); j++){
+            if(i == 0 or j == 0) v[i][j] = 0;
+        }
     }
-//    fr(i,dp.size()) cout << i<< " "<< dp[i] <<"\n";
-    cout << dp[sum];
+
+    for (int i = 1; i <= b.size(); i++) {
+        for (int j = 1; j <= a.size(); j++){
+            if(b[i-1]==a[j-1]){
+                v[i][j] = 1 + v[i-1][j-1];
+            }
+            else{
+                v[i][j] = max(v[i-1][j],v[i][j-1]);
+            }
+        }
+    }
+
+    cout << v[b.size()][a.size()] <<"\n";
+
+//    for(int i = 0;i<v.size();i++){
+//        for(int j = 0;j<v[0].size();j++){
+//            cout << v[i][j]<<" ";
+//        }
+//        cout << "\n";
+//    }
 
 
     return 0;
 }
-
-

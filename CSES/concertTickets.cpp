@@ -1,7 +1,7 @@
 
 
-#ifndef COMP_CSES_H
-#define COMP_CSES_H
+#ifndef COMP_LEETCODEBITS_H
+#define COMP_LEETCODEBITS_H
 
 #include <algorithm>
 #include <bitset>
@@ -74,29 +74,44 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define all(a) a.begin(), a.end()
 #define pb(a) push_back(a)
-#endif //COMP_CSES_H
+#endif //COMP_LEETCODEBITS_H
+
+int bsearch(vector<int> v, int a){
+    int lo, hi; lo = 0; hi = v.size()-1;
+    int mid = lo +(hi-lo)/2;
+    while(v[mid]!=a){
+        mid = lo +(hi-lo)/2;
+        if(v[mid] == a) return mid;
+        else if(v[mid]<a) hi = mid;
+        else if(v[mid]>a) lo = mid;
+        if(lo==mid &&lo == hi && v[mid]!=a) return -1;
+    }
+
+}
+
 
 
 int main() {
     fast;
-    int x, sum;
-    cin >> x >> sum;
-    vector<long long> nums(x, 0);
-    vector<long long> dp(sum + 1, 0);
-    fr(i, x) cin >> nums[i];
-    dp[0] = 1;
-    fr(j, nums.size()) {
-        fr(i, dp.size()) {
-            if (i - nums[j] >= 0) dp[i] += dp[i - nums[j]];
-            dp[i] = dp[i] % (1000000000+7);
-        }
+    int tickets, people;
+    cin >> tickets >> people;
+    vector<int> t(tickets);
+    vector<int> p(people);
+    for (int i = 0; i < tickets; i++) cin >> t[i];
+    for (int i = 0; i < people; i++) cin >> p[i];
 
+    sort(t.begin(),t.end());
+
+    for(int i = 0;i<p.size();i++){
+        int x = bsearch(t,p[i]);
+        if(x!=-1) t.erase(t.begin()+x);
+        cout << x <<"\n";
     }
-//    fr(i,dp.size()) cout << i<< " "<< dp[i] <<"\n";
-    cout << dp[sum];
+
+
+
+
 
 
     return 0;
 }
-
-

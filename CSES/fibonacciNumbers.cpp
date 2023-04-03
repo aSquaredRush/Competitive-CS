@@ -1,7 +1,7 @@
 
 
-#ifndef COMP_CSES_H
-#define COMP_CSES_H
+#ifndef COMP_LEETCODEBITS_H
+#define COMP_LEETCODEBITS_H
 
 #include <algorithm>
 #include <bitset>
@@ -37,7 +37,6 @@
 #include <vector>
 
 #if __cplusplus >= 201103L
-
 #include <array>
 #include <atomic>
 #include <chrono>
@@ -58,11 +57,10 @@
 #include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
-
 #endif
 using namespace std;
-#define FOR(i, a, b) for(int i = (a); i<(b); i++)
-#define fr(i, a) FOR(i,0,a)
+#define FOR(i,a,b) for(int i = (a); i<(b); i++)
+#define fr(i,a) FOR(i,0,a)
 
 
 #define fast ios::sync_with_stdio(0); cin.tie(0)
@@ -74,26 +72,18 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define all(a) a.begin(), a.end()
 #define pb(a) push_back(a)
-#endif //COMP_CSES_H
+#endif //COMP_LEETCODEBITS_H
 
 
-int main() {
+int main(){
     fast;
-    int x, sum;
-    cin >> x >> sum;
-    vector<long long> nums(x, 0);
-    vector<long long> dp(sum + 1, 0);
-    fr(i, x) cin >> nums[i];
-    dp[0] = 1;
-    fr(j, nums.size()) {
-        fr(i, dp.size()) {
-            if (i - nums[j] >= 0) dp[i] += dp[i - nums[j]];
-            dp[i] = dp[i] % (1000000000+7);
-        }
 
-    }
-//    fr(i,dp.size()) cout << i<< " "<< dp[i] <<"\n";
-    cout << dp[sum];
+    long long n; cin>> n;
+    double a = (1+sqrt(5))/2;
+    double b = (1-sqrt(5))/2;
+    cout << pow(a,n)<<"\n";
+    cout << pow(b,n) <<"\n";
+    cout << ((long long)((pow(a,n)-pow(b,n))/sqrt(5)))<<"\n";
 
 
     return 0;
